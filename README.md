@@ -13,7 +13,7 @@ This is a class of php QR Code
 ### Github
 
 [![Downloads](https://img.shields.io/github/downloads/yakeing/QRCode/total.svg)](https://github.com/yakeing/QRCode)
-[![Size](https://img.shields.io/github/size/yakeing/php_jwsign/src/QRCode/jwsign.php.svg)](https://github.com/yakeing/QRCode/blob/master/src/php_jwsign/jwsign.php)
+[![Size](https://img.shields.io/github/size/yakeing/QrCode/src/QrCode.php.svg)](https://github.com/yakeing/QRCode/blob/master/src/QrCode.php)
 [![tag](https://img.shields.io/github/tag/yakeing/QRCode.svg)](https://github.com/yakeing/QRCode/releases)
 [![Language](https://img.shields.io/github/license/yakeing/QRCode.svg)](https://github.com/yakeing/QRCode/blob/master/LICENSE)
 [![Php](https://img.shields.io/github/languages/top/yakeing/QRCode.svg)](https://github.com/yakeing/QRCode)
