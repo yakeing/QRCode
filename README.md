@@ -30,15 +30,15 @@ Use [Composer](https://getcomposer.org) to install the library.
 
 ```php
 
-    $text //文字 string
-    $pixel //输出图片尺寸 ini
-    $icon //小图标 url (必须是正方形否则出现位置不正)
-    $distinguish //识别率 L=7% , M=15% , Q=25% , H=30%
-    $type //输出图片格式 jpg/png (因GIF有版权之争)
-    $margin //边距 ini 0-4
-    $color //RBG颜色 array('255|255|255', '0|0|0'); 十六进制颜色 FF0000|000000
-    $stream //输出编码 true/false
-    $spec //规格 有0-40种规格的矩阵
+    $text //Enter text (string)
+    $pixel //Output image size (ini)
+    $icon //Small icon (url) (Must be a square image, otherwise the image will be distorted)
+    $distinguish //Recognition rate (L=7% , M=15% , Q=25% , H=30%)
+    $type //Output image format (jpg/png) (Due to GIF copyright dispute)
+    $margin //Margin white edge (ini 0-4)
+    $color //RBG Colour array('255|255|255', '0|0|0'); Hexadecimal Colour FF0000|000000
+    $stream //Output source code (true/false)
+    $spec //specification Matrix with 0-40 specifications
     qrcode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $stream);
 ```
 
