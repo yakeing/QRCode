@@ -26,7 +26,7 @@ Use [Composer](https://getcomposer.org) to install the library.
     $ composer require yakeing/qrcode
 ```
 
-### JWSign init
+### QRCode init
 
 ```php
 
