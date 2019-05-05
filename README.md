@@ -1,5 +1,7 @@
 # QRCode
-This is a class of php QR Code
+This is a class of php QR Code 
+
+[中文文档](https://github.com/yakeing/QRCode/blob/master/ZH.README.md)
 
 ### Travis CI
 
