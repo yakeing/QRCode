@@ -12,11 +12,11 @@
 
 ### Travis CI
 
-[![Travis-ci](https://api.travis-ci.org/yakeing/php_jwsign.svg)](https://travis-ci.org/yakeing/php_jwsign)
+[![Travis-ci](https://api.travis-ci.org/yakeing/QRCode.svg)](https://travis-ci.org/yakeing/QRCode)
 
 ### Packagist
 
-[![Version](http://img.shields.io/packagist/v/yakeing/qrcode.svg)](https://packagist.org/packages/yakeing/qrcode/releases)
+[![Version](http://img.shields.io/packagist/v/yakeing/qrcode.svg)](https://github.com/yakeing/qrcode/releases)
 [![Downloads](http://img.shields.io/packagist/dt/yakeing/qrcode.svg)](https://packagist.org/packages/yakeing/qrcode)
 
 ### Github
