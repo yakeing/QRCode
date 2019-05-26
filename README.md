@@ -5,7 +5,7 @@ This is a class of php QR Code
 
 ### Travis CI
 
-[![Travis-ci](https://api.travis-ci.org/yakeing/php_jwsign.svg)](https://travis-ci.org/yakeing/php_jwsign)
+[![Travis-ci](https://api.travis-ci.org/yakeing/QRCode.svg)](https://travis-ci.org/yakeing/QRCode)
 
 ### Packagist
 
