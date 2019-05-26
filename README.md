@@ -9,7 +9,7 @@ This is a class of php QR Code
 
 ### Packagist
 
-[![Version](http://img.shields.io/packagist/v/yakeing/qrcode.svg)](https://packagist.org/packages/yakeing/qrcode/releases)
+[![Version](http://img.shields.io/packagist/v/yakeing/qrcode.svg)](https://github.com/yakeing/yakeing/qrcode/releases)
 [![Downloads](http://img.shields.io/packagist/dt/yakeing/qrcode.svg)](https://packagist.org/packages/yakeing/qrcode)
 
 ### Github
