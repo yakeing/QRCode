@@ -34,13 +34,10 @@ class QrCode{
 		$exchange = new qrcode_exchange();
 		$masked = $exchange->run($string, $width, $frame, $datacode);
 		$tab = $exchange->binarize($masked);
-		if(true === $stream){
-			echo "array(\n'".implode("',\n'",$tab)."'\n)";
-		}else{
-			//image 图像
-			$img = new qrcode_image();
-			$img->ImgColor($tab, $pixel, $icon , $type, $margin, $color);
-		}
+		if(true === $stream) return $tab;
+		//image 图像
+		$img = new qrcode_image();
+		$img->ImgColor($tab, $pixel, $icon , $type, $margin, $color);
 	}
 }//END class qrcode
 
