@@ -45,7 +45,7 @@
     $distinguish //二维码可识别率 (L=7% , M=15% , Q=25% , H=30%)
     $type //生成图片格式 (jpg/png) (因GIF有版权之争)
     $margin //二维码白边距离 (0-4)
-    $color //RBG 颜色 array('255|255|255', '0|0|0'); 十六进制颜色 'FF0000|000000' (可选择RBG或十六进制的其中一种)
+    $color //RGB 颜色 array('255|255|255', '0|0|0'); 十六进制颜色 'FF0000|000000' (可选择RBG或十六进制的其中一种)
     $stream //是否输出源代码 (true/false)
     $spec //规格 有0-40种规格的矩阵
     qrcode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $stream);
