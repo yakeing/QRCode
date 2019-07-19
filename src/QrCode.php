@@ -67,11 +67,9 @@ class qrcode_image{
 		}else if(preg_match('/^[a-f0-9]{6}\|[a-f0-9]{6}$/i', $color)){ //十六进制
 			$colour = array();
 			list($color1,$color2) = explode('|', strtoupper($color));
-			$arr = array(str_split($color1,2), str_split($color2,2));
-			foreach($arr as $value){
-				$colour[] = array_map(function ($str){
-					return '0x'.$str;
-				}, $value);
+			foreach(array($color1,$color2) as $value){
+				$int = hexdec($value);
+				$colour[] = array(0xFF & ($int >> 0x10), 0xFF & ($int >> 0x8), 0xFF & $int);
 			}
 		}else{
 			$colour = array(array(255, 0, 0),array(0, 0, 0));
