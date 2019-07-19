@@ -38,7 +38,7 @@ Use [Composer](https://getcomposer.org) to install the library.
     $distinguish //Recognition rate (L=7% , M=15% , Q=25% , H=30%)
     $type //Output image format (jpg/png) (Due to GIF copyright dispute)
     $margin //Margin white edge (ini 0-4)
-    $color //RBG Colour array('255|255|255', '0|0|0'); Hexadecimal Colour FF0000|000000
+    $color //RGB Colour array('255|255|255', '0|0|0'); Hexadecimal Colour FF0000|000000
     $stream //Output source code (true/false)
     $spec //specification Matrix with 0-40 specifications
     qrcode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $stream);
