@@ -19,6 +19,7 @@
 	*  注意: 颜色相撞 ff0000 背景变成透明;
 	*  使用正方形 ICO 更加正规,不做比例调整
  */
+namespace qr_code;
 class QrCode{
 	public static function image($text, $pixel = 200, $icon = false, $distinguish = 'L', $type = 'PNG', $margin = 0, $color = false, $spec=1, $stream = false){
 		//string 文字
