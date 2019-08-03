@@ -2,7 +2,7 @@
 <phpunit bootstrap="./bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="QRCode Test Suite">
-            <directory suffix=".php">./</directory>
+            <directory suffix=".php">./QRCodeTest</directory>
         </testsuite>
     </testsuites>
     <filter>
