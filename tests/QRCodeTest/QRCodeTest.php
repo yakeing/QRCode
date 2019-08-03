@@ -1,7 +1,6 @@
 <?php
 namespace QRCodeTest;
-use qr_code;
-use qr_code\QrCode;
+use QrCode;
 use PHPUnit\Framework\TestCase;
 class QRCodeTest extends TestCase{
   public function testQRCode(){
