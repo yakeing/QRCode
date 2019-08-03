@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "qr_code\\": "src/"
         }
     },
     "require": {
