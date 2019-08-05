@@ -13,6 +13,7 @@ matrix:
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update && composer install --no-interaction
+  - tar -zcf /tmp/src.tar.gz src
   - cd tests
 
 script: phpunit --stderr
@@ -22,16 +23,15 @@ deploy:
   api_key:
     secure: ${GITHUB_TOKEN}
   file_glob: true
-  file: new.*.zip
-  file: new.*.tar.gz
+  file: /tmp/src.tar.gz
   skip_cleanup: true
   on:
     tags: true
 
-after_script:
-  - cd ../
-  - pwd
-
 branches:
   except:
   - /^untagged/
+
+after_script:
+  - cd ../
+  - pwd
