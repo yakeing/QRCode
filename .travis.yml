@@ -10,10 +10,6 @@ php:
 matrix:
   fast_finish: true
 
-branches:
-  except:
-  - /^untagged/
-
 before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update && composer install --no-interaction
@@ -26,8 +22,8 @@ deploy:
   api_key:
     secure: ${GITHUB_TOKEN}
   file_glob: true
-  file: directory/*.zip
-  file: directory/*.tar.gz
+  file: new.*.zip
+  file: new.*.tar.gz
   skip_cleanup: true
   on:
     tags: true
@@ -35,3 +31,7 @@ deploy:
 after_script:
   - cd ../
   - pwd
+
+branches:
+  except:
+  - /^untagged/
