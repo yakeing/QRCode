@@ -7,6 +7,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+
 matrix:
   fast_finish: true
 
@@ -14,7 +15,6 @@ before_install:
   - phpenv config-rm xdebug.ini
   - composer self-update && composer install --no-interaction
   - tar -zcf /tmp/Core.tar.gz src
-  - cd tests
 
 script: phpunit --stderr
 
@@ -33,5 +33,4 @@ branches:
   - /^untagged/
 
 after_script:
-  - cd ../
   - pwd
