@@ -12,11 +12,16 @@ matrix:
   fast_finish: true
 
 before_install:
-  - phpenv config-rm xdebug.ini
-  - composer self-update && composer install --no-interaction
+  #- phpenv config-rm xdebug.ini
+  - travis_retry composer self-update && composer install --no-interaction --prefer-source --dev
   - tar -zcf /tmp/Core.tar.gz src
 
-script: phpunit --stderr
+script:
+  - phpunit --stderr
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - cat coverage.xml
 
 deploy:
   provider: releases
