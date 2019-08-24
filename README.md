@@ -7,6 +7,10 @@ This is a class of php QR Code
 
 [![Travis-ci](https://api.travis-ci.org/yakeing/QRCode.svg)](https://travis-ci.org/yakeing/QRCode)
 
+### codecov
+
+[![codecov](https://codecov.io/gh/yakeing/QRCode/branch/master/graph/badge.svg)](https://codecov.io/gh/yakeing/QRCode)
+
 ### Packagist
 
 [![Version](http://img.shields.io/packagist/v/yakeing/qrcode.svg)](https://github.com/yakeing/yakeing/qrcode/releases)
