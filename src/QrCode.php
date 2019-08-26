@@ -4,7 +4,7 @@
     *  二维码类
     *
     * @author http://weibo.com/yakeing
-    * @version 3.1
+    * @version 3.2
     *
     *  $text 文字 string
     *  $pixel 输出图片尺寸 ini
@@ -56,33 +56,34 @@ class qrcode_image{
     //图像与颜色
     function ImgColor($frame, $pixel, $iconurl, $type, $margin, $color){
         //$pixel = $pixel/count($frame);
-        if(is_array($color)){ //RGB
-            $colour = array();
-            for ($k=0; $k<2; ++$k){
-                $v = explode('|', $color[$k]);
-                for ($i=0; $i<3; ++$i){
-                    $t = (int)$v[$i];
-                    $colour[$k][$i] = (256 > $t) ? $t : 0;
+        if(is_array($color) && 2 == count($color)){ //RGB
+            $RGB = array();
+            foreach($color as $value){
+                $matches = array();
+                if(preg_match('/^([0-9]{0,3}),([0-9]{0,3}),([0-9]{0,3})$/', $value, $matches)){
+                    array_shift($matches);
+                    $RGB[] = array_map(
+                        function($person) {
+                            return ($person > 255) ? 255 : $person;
+                        }, $matches);
+                }else{
+                    $RGB[] = array(255, 0, 0);
                 }
             }
-        }else if(preg_match('/^[a-f0-9]{6}\|[a-f0-9]{6}$/i', $color)){ //十六进制
-            $colour = array();
-            list($color1,$color2) = explode('|', strtoupper($color));
-            foreach(array($color1,$color2) as $value){
-                $int = hexdec($value);
-                $colour[] = array(0xFF & ($int >> 0x10), 0xFF & ($int >> 0x8), 0xFF & $int);
-            }
+        }else if(preg_match('/^[#]?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2}),[#]?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i', $color, $matches)){ //十六进制
+                array_shift($matches);
+                $RGB = array_chunk($matches,3);
         }else{
-            $colour = array(array(255, 0, 0),array(0, 0, 0));
+            $RGB = array(array(255, 0, 0), array(0, 0, 0));
         }
-        $im = $this->image($frame, $pixel, $margin, $colour);
-        if(is_file($iconurl)) $im = $this->addIcon($im, $iconurl, $colour);
+        $im = $this->image($frame, $pixel, $margin, $RGB);
+        if(is_file($iconurl)) $im = $this->addIcon($im, $iconurl, $RGB);
         $types = $this->format($type);
         return $this->render($im, $types);
     } //END img
 
     //构造图层
-    private function image($frame, $PixelPoint, $blank, $colour){
+    private function image($frame, $PixelPoint, $blank, $RGB){
         $PixelPoint = intval($PixelPoint);
         $blank = intval($blank);
         if($PixelPoint < 1) $PixelPoint = 1;
@@ -92,8 +93,8 @@ class qrcode_image{
         // $imgH = $w * $PixelPoint;
         $imgW = $imgH = $PixelPoint;
         $chart = ImageCreateTrueColor($w, $h);//真彩
-        $black = ImageColorAllocate($chart, $colour[1][0], $colour[1][1], $colour[1][2]);//底色黑
-        ImageFill($chart, 0, 0, ImageColorAllocate($chart, $colour[0][0], $colour[0][1], $colour[0][2]));//图形着色->底色白
+        $black = ImageColorAllocate($chart, $RGB[1][0], $RGB[1][1], $RGB[1][2]);//底色黑
+        ImageFill($chart, 0, 0, ImageColorAllocate($chart, $RGB[0][0], $RGB[0][1], $RGB[0][2]));//图形着色->底色白
         for($y=0; $y<$h; ++$y){
             for($x=0; $x<$w; ++$x){
                 if ($frame[$y][$x] == '1'){
@@ -108,7 +109,7 @@ class qrcode_image{
             $rimW = $imgW+$blank;
             $rimH = $imgH+$blank;
             $rim = ImageCreateTrueColor($rimW, $rimH);
-            ImageFill($rim, 0, 0, ImageColorAllocate($rim, $colour[0][0], $colour[0][1], $colour[0][2]));
+            ImageFill($rim, 0, 0, ImageColorAllocate($rim, $RGB[0][0], $RGB[0][1], $RGB[0][2]));
             ImageCopyResized($rim, $basics, $blank/2, $blank/2, 0, 0, $imgW, $imgH, $imgW, $imgH);
             ImageDestroy($basics);
             return $rim;
@@ -119,7 +120,7 @@ class qrcode_image{
 
     //ADD ICON  (3.7948)
     // http://php.net/manual/zh/function.exif-imagetype.php 图像类型常量
-    private function addIcon($im, $icon, $colour){
+    private function addIcon($im, $icon, $RGB){
         if(function_exists('exif_imagetype')){
             $imagetype = exif_imagetype($icon);
         }else{
@@ -145,7 +146,7 @@ class qrcode_image{
         $BackgX = $x/8+$x;
         $BackgY = $y/8+$y;
         $white_im = ImageCreateTrueColor($BackgX, $BackgY);
-        $white_colo = ImageColorAllocate($white_im, $colour[0][0], $colour[0][1], $colour[0][2]);
+        $white_colo = ImageColorAllocate($white_im, $RGB[0][0], $RGB[0][1], $RGB[0][2]);
         ImageFill($white_im, 0, 0, $white_colo);
         $white_icox = $BackgX/2-$x/2+1;
         $white_icoy = $BackgY/2-$y/2+1;
