@@ -14,7 +14,9 @@ class QRCodeTest extends TestCase{
     $stream = true;
     $spec = 10;
     $ret = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, $stream);
-
     $this->assertTrue(is_array($ret));
+    $text = 1234567890;
+    $ret2 = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, $stream);
+    $this->assertTrue(is_array($ret2));
   }
 }
