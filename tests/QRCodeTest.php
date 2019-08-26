@@ -15,7 +15,7 @@ class QRCodeTest extends TestCase{
     $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, true);
     $this->assertTrue(is_array($str));
     $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $imag = QrCode::image($text, $pixel, false, 'H', 'jpg', 2, $color, $spec, false);
+    $imag = QrCode::image($text, $pixel, false, 'H', 'jpg', 2, array('235,00,100','68,200,90'), $spec, false);
     var_dump($imag);
     //$this->assertTrue(is_string($imag));
   }
