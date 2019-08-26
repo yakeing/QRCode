@@ -11,12 +11,13 @@ class QRCodeTest extends TestCase{
     $type = 'png';
     $margin = 0;
     $color = 'FF0000|000000';
-    $stream = true;
     $spec = 10;
-    $ret = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, $stream);
-    $this->assertTrue(is_array($ret));
+    $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, true);
+    $this->assertTrue(is_array($str));
     $text = 1234567890;
-    $ret2 = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, $stream);
-    $this->assertTrue(is_array($ret2));
+    $distinguish ='H';
+    $imag = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, false);
+    var_dump($imag);
+    //$this->assertTrue(is_string($imag));
   }
 }
