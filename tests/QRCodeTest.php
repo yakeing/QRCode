@@ -4,19 +4,19 @@ use qr_code\QrCode;
 use PHPUnit\Framework\TestCase;
 class QRCodeTest extends TestCase{
   public function testQRCode(){
-    $text = 'Test';
+    $text = 'QrCode';
     $pixel = 32;
-    $icon = dirname(__FILE__).'icon.jpg';
+    $icon = dirname(__FILE__).'/icon.jpg';
     $distinguish ='L';
     $type = 'png';
     $margin = 0;
-    $color = 'FF0000,000000';
+    $color = 'FF0000,#000000';
     $spec = 10;
     $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, true);
     $this->assertTrue(is_array($str));
     $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $imag = QrCode::image($text, $pixel, false, 'H', 'jpg', 2, array('235,00,100','68,200,90'), $spec, false);
-    var_dump($imag);
+    var_dump($str, $imag);
     //$this->assertTrue(is_string($imag));
   }
 }
