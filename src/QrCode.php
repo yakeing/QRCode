@@ -4,20 +4,21 @@
     *  二维码类
     *
     * @author http://weibo.com/yakeing
-    * @version 3.1
+    * @version 3.2
     *
-    *  $text 文字 string
-    *  $pixel 输出图片尺寸 ini
-    *  $icon 小图标 url (必须是正方形否则出现位置不正)
-    *  $distinguish 识别率 L=7% , M=15% , Q=25% , H=30%
-    *  $type 输出图片格式 jpg/png (因GIF有版权之争)
-    *  $margin 边距 ini 0-4
-    *  $color RBG颜色 array('255|255|255', '0|0|0'); 十六进制颜色 FF0000|000000
-    *  $stream 输出编码 true/false
-    *  $spec 规格 有40种规格的矩阵
+    *  $text  [QR code content] (string) (二维码内容)
+    *  $pixel [size of the QR] (ini) (输出图片尺寸)
+    *  $icon [Icon path] (string) (二维码中间小图标)
+    *  $distinguish [Recognition rate] (L=7% , M=15% , Q=25% , H=30%) (识别率)
+    *  $type [Output image format] (jpg/png)  (输出图片格式, 因GIF有版权之争)
+    *  $margin [QR code margin] ( 0-4) 边距
+    *  $color [QR code color] RBG array('255,255,255', '0,0,0') OR Hexadecimal 'FF0000,000000' (二维码颜色)
+    *  $stream [Source code] (true/false) (输出源代码)
+    *  $spec [specifications] (0-40) (规格矩阵)
+    *
     *  qrcode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $stream);
-    *  注意: 颜色相撞 ff0000 背景变成透明;
-    *  使用正方形 ICO 更加正规,不做比例调整
+    *  注意: 背景 $color[0] 颜色 ff0000 相撞 $icon 变成透明;
+    *  使用正方形 $icon 否则出现小图标变形
  */
 namespace qr_code;
 class QrCode{
@@ -35,8 +36,8 @@ class QrCode{
         $exchange = new qrcode_exchange();
         $masked = $exchange->run($string, $width, $frame, $datacode);
         $tab = $exchange->binarize($masked);
-        if(true === $stream) return $tab;
         //image 图像
+        if(true === $stream) return $tab;
         $img = new qrcode_image();
         $im = $img->ImgColor($tab, $pixel, $icon, $margin, $color);
         if(strtoupper($type) == 'PNG'){
@@ -51,15 +52,14 @@ class QrCode{
 }//END class qrcode
 
 /*
- * QR Code Image 图像处理
- * Author: weibo.com/yakeing
- * ImageCreate 256色
- * ImageCreateTrueColor 真彩色
- * ImageCopyResized  粗糙速度快
- * ImageCopyResampled  平滑速度慢
+* QR Code Image 图像处理
+* Author: weibo.com/yakeing
+* ImageCreate 256色
+* ImageCreateTrueColor 真彩色
+* ImageCopyResized  粗糙速度快
+* ImageCopyResampled  平滑速度慢
 */
 class qrcode_image{
-
     //图像与颜色
     function ImgColor($frame, $pixel, $iconurl, $margin, $color){
         //$pixel = $pixel/count($frame);
@@ -224,11 +224,11 @@ class qrcode_image{
 
 
 /*
- * QR Code Exchange 转换
+* QR Code Exchange 转换
 *
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+* PHP QR Code is distributed under LGPL 3
+* Copyright (C) 2010 Dominik Dzienia
+* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 class qrcode_exchange{
 
@@ -406,8 +406,8 @@ class qrcode_exchange{
     private function mask5($x, $y) { return (($x*$y)&1)+($x*$y)%3; }
     private function mask6($x, $y) { return ((($x*$y)&1)+($x*$y)%3)&1; }
     private function mask7($x, $y) { return ((($x*$y)%3)+(($x+$y)&1))&1; }
-
     //write 写信息
+
     private function writeFormatInformation($width, &$frame, $mask, $level){
         $blacks = 0;
         $format =  $this->getFormatInfo($mask, $level);
@@ -514,11 +514,11 @@ class qrcode_exchange{
                 if(($i >= 3) && ($i < ($length-2)) && ($this->runLength[$i] % 3 == 0)) {
                     $fact = (int)($this->runLength[$i] / 3);
                     if(($this->runLength[$i-2] == $fact) && ($this->runLength[$i-1] == $fact) && ($this->runLength[$i+1] == $fact) && ($this->runLength[$i+2] == $fact)) {
-                            if(($this->runLength[$i-3] < 0) || ($this->runLength[$i-3] >= (4 * $fact))) {
-                                $demerit += 40;
-                            } else if((($i+3) >= $length) || ($this->runLength[$i+3] >= (4 * $fact))) {
-                                $demerit += 40;
-                            }
+                        if(($this->runLength[$i-3] < 0) || ($this->runLength[$i-3] >= (4 * $fact))) {
+                            $demerit += 40;
+                        } else if((($i+3) >= $length) || ($this->runLength[$i+3] >= (4 * $fact))) {
+                            $demerit += 40;
+                        }
                     }
                 }
             }
@@ -527,16 +527,12 @@ class qrcode_exchange{
     }//END calcN1N3
 }//END class qrcode_exchange
 
-
-
-
-
 /*
- * QR Code String 文本处理
+* QR Code String 文本处理
 *
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+* PHP QR Code is distributed under LGPL 3
+* Copyright (C) 2010 Dominik Dzienia
+* Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 class qrcode_string{
 
@@ -612,8 +608,6 @@ class qrcode_string{
         }
     }//END getEccSpec
 
-
-
     //get 获取ECC长度
     private function getECCLength($version, $level){
         return qrcode_table::$capacity[$version][3][$level];
@@ -680,7 +674,6 @@ class qrcode_string{
         ++$this->count;
         return $ret;
     }//END get Code
-
 
     //init RS
     private function init_rs($symsize, $gfpoly, $fcr, $prim, $nroots, $pad){
@@ -784,33 +777,33 @@ class qrcode_string{
 
     //encode 编码RS字符
     private function encode_rs_char($data, &$parity){
-            $MM       =& $this->mm;
-            $NN       =& $this->nn;
-            $ALPHA_TO =& $this->alpha_to;
-            $INDEX_OF =& $this->index_of;
-            $GENPOLY  =& $this->genpoly;
-            $NROOTS   =& $this->nroots;
-            $FCR      =& $this->fcr;
-            $PRIM     =& $this->prim;
-            $IPRIM    =& $this->iprim;
-            $PAD      =& $this->pad;
-            $A0       =& $NN;
-            $parity = array_fill(0, $NROOTS, 0);
-            for($i=0; $i< ($NN-$NROOTS-$PAD); ++$i) {
-                $feedback = $INDEX_OF[$data[$i] ^ $parity[0]];
-                if($feedback != $A0) {
-                    $feedback = $this->modnn($NN - $GENPOLY[$NROOTS] + $feedback);
-                    for($j=1;$j<$NROOTS;++$j) {
-                        $parity[$j] ^= $ALPHA_TO[$this->modnn($feedback + $GENPOLY[$NROOTS-$j])];
-                    }
-                }
-                array_shift($parity);
-                if($feedback != $A0) {
-                    array_push($parity, $ALPHA_TO[$this->modnn($feedback + $GENPOLY[0])]);
-                } else {
-                    array_push($parity, 0);
+        $MM       =& $this->mm;
+        $NN       =& $this->nn;
+        $ALPHA_TO =& $this->alpha_to;
+        $INDEX_OF =& $this->index_of;
+        $GENPOLY  =& $this->genpoly;
+        $NROOTS   =& $this->nroots;
+        $FCR      =& $this->fcr;
+        $PRIM     =& $this->prim;
+        $IPRIM    =& $this->iprim;
+        $PAD      =& $this->pad;
+        $A0       =& $NN;
+        $parity = array_fill(0, $NROOTS, 0);
+        for($i=0; $i< ($NN-$NROOTS-$PAD); ++$i) {
+            $feedback = $INDEX_OF[$data[$i] ^ $parity[0]];
+            if($feedback != $A0) {
+                $feedback = $this->modnn($NN - $GENPOLY[$NROOTS] + $feedback);
+                for($j=1;$j<$NROOTS;++$j) {
+                    $parity[$j] ^= $ALPHA_TO[$this->modnn($feedback + $GENPOLY[$NROOTS-$j])];
                 }
             }
+            array_shift($parity);
+            if($feedback != $A0) {
+                array_push($parity, $ALPHA_TO[$this->modnn($feedback + $GENPOLY[0])]);
+            } else {
+                array_push($parity, 0);
+            }
+        }
     }//END encode_rs_char
 
     //----------------------------------------NO: 第三分支 流系列 to------------------------------------------
@@ -963,7 +956,7 @@ class qrcode_string{
         if($padlen > 0){
             $padbuf = array();
             for($i=0; $i<$padlen; ++$i){
-                    $padbuf[$i] = ($i&1)?0x11:0xec;
+                $padbuf[$i] = ($i&1)?0x11:0xec;
             }
             $ret = $padding->appendBytes($padlen, $padbuf);
             if($ret < 0) return $ret;
@@ -974,7 +967,7 @@ class qrcode_string{
 
             //get 得到数据长度
     private function getDataLength($version, $level){
-                    return qrcode_table::$capacity[$version][1] - qrcode_table::$capacity[$version][3][$level];
+        return qrcode_table::$capacity[$version][1] - qrcode_table::$capacity[$version][3][$level];
     }//END getDataLength
 
     //appendNum 追加数
@@ -1079,7 +1072,7 @@ class qrcode_string{
             $bits = $this->estimateBitStreamSize($prev);
             $version = $this->getMinimumVersion((int)(($bits + 7) / 8), $this->level);
             if ($version < 0){
-                    return -1;
+                return -1;
             }
         } while ($version > $prev);
         return $version;
@@ -1108,7 +1101,6 @@ class qrcode_string{
                 $st2->assignment($this->mode, $this->size - $words, array_slice($this->data, $words));
                 $st1->encodeBitStream($version);
                 $st2->encodeBitStream($version);
-
                 $this->bstream = new qrcode_string();
                 $this->bstream->data = array();
                 $this->append_size($st1->bstream);
@@ -1504,10 +1496,6 @@ class qrcode_string{
 
 }//END class qrcode_string
 
-
-
-
-
 /*
  * QR Code Table 表
  * PHP QR Code is distributed under LGPL 3
@@ -1652,17 +1640,13 @@ class qrcode_table{
 
 }//END class qrcode_table
 
-
-
-
 /*
- * QR Code Pattern 40种模式
- * PHP QR Code is distributed under LGPL 3
- * Copyright (C) 2010 Dominik Dzienia
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+  * QR Code Pattern 40种模式
+  * PHP QR Code is distributed under LGPL 3
+  * Copyright (C) 2010 Dominik Dzienia
+   * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 class qrcode_pattern{
-
         public $frames = array();
 
     //get 获得宽度 public
