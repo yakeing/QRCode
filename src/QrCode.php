@@ -36,10 +36,12 @@ class QrCode{
         $exchange = new qrcode_exchange();
         $masked = $exchange->run($string, $width, $frame, $datacode);
         $tab = $exchange->binarize($masked);
+        if(is_array($stream)) return $tab;
         //image 图像
-        if(true === $stream) return $tab;
         $img = new qrcode_image();
         $im = $img->ImgColor($tab, $pixel, $icon, $margin, $color);
+        if(true === $stream) return $im;
+        //if(is_object($stream)) return $im; //new stdClass()
         if(strtoupper($type) == 'PNG'){
             header('Content-type: image/PNG');
             ImagePNG($im);
@@ -48,6 +50,7 @@ class QrCode{
             ImageJPEG($im);//合成输出
         }
         ImageDestroy($im); //结束图形
+        return $im;
     }
 }//END class qrcode
 
