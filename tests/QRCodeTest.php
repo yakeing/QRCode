@@ -10,7 +10,7 @@ class QRCodeTest extends TestCase{
     $distinguish ='L';
     $type = 'png';
     $margin = 0;
-    $color = 'FF0000,#000000';
+    $color = 'Ff0f0F,#000000';
     $spec = 10;
     $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, true);
     $this->assertTrue(is_array($str));
