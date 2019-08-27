@@ -131,12 +131,11 @@ class qrcode_image{
     // http://php.net/manual/zh/function.exif-imagetype.php 图像类型常量
     private function addIcon($im, $icon, $RGB){
         if(function_exists('exif_imagetype')){
-            $imagetype = exif_imagetype($icon);
+            $type = exif_imagetype($icon);
         }else{
-            $IconInfo = getimagesize($icon);
-            $imagetype = $IconInfo[2];
+            list($width, $height, $type, $attr) = getimagesize($icon);
         }
-        switch($imagetype){
+        switch($type){
             case 1: //IMAGETYPE_GIF
                 $ico = ImageCreateFromGIF($icon);
                 break;
