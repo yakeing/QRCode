@@ -4,7 +4,7 @@
     *  二维码类
     *
     * @author http://weibo.com/yakeing
-    * @version 3.2
+    * @version 3.1
     *
     *  $text 文字 string
     *  $pixel 输出图片尺寸 ini
@@ -38,10 +38,17 @@ class QrCode{
         if(true === $stream) return $tab;
         //image 图像
         $img = new qrcode_image();
-        $img->ImgColor($tab, $pixel, $icon , $type, $margin, $color);
+        $im = $img->ImgColor($tab, $pixel, $icon, $margin, $color);
+        if(strtoupper($type) == 'PNG'){
+            header('Content-type: image/PNG');
+            ImagePNG($im);
+        }else{
+            header('Content-type: image/JPEG');
+            ImageJPEG($im);//合成输出
+        }
+        ImageDestroy($im); //结束图形
     }
 }//END class qrcode
-
 
 /*
  * QR Code Image 图像处理
@@ -54,7 +61,7 @@ class QrCode{
 class qrcode_image{
 
     //图像与颜色
-    function ImgColor($frame, $pixel, $iconurl, $type, $margin, $color){
+    function ImgColor($frame, $pixel, $iconurl, $margin, $color){
         //$pixel = $pixel/count($frame);
         if(is_array($color) && 2 == count($color)){ //RGB
             $RGB = array();
@@ -72,14 +79,16 @@ class qrcode_image{
             }
         }else if(preg_match('/^[#]?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2}),[#]?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i', $color, $matches)){ //十六进制
                 array_shift($matches);
-                $RGB = array_chunk($matches,3);
+                 $RGB = array_chunk(
+                    array_map(function($person) {
+                            return hexdec($person);
+                        }, $matches), 3);
         }else{
             $RGB = array(array(255, 0, 0), array(0, 0, 0));
         }
         $im = $this->image($frame, $pixel, $margin, $RGB);
         if(is_file($iconurl)) $im = $this->addIcon($im, $iconurl, $RGB);
-        $types = $this->format($type);
-        return $this->render($im, $types);
+        return $im;
     } //END img
 
     //构造图层
@@ -211,36 +220,7 @@ class qrcode_image{
         return $image;
     } //END radiusImage
 
-    //图像格式
-    private function format($fortype){
-        $fortype = strtoupper($fortype);
-        switch ($fortype){
-            case 'JPG':
-            case 'JPEG':
-                $type = 'jpeg';
-            break;
-            default:
-                    $type = 'png';
-                break;
-        }
-        return $type;
-    } //END format
-
-    //图像输出
-    private function render($im, $type){
-        header('Content-type: image/'.$type);
-        if($type == 'jpeg'){
-            ImageJPEG($im);//合成输出
-        }else{
-            ImagePNG($im);
-        }
-        ImageDestroy($im); //结束图形
-    } //END render
-
 }//END class qrcode_image
-
-
-
 
 
 /*
