@@ -12,6 +12,7 @@ class QRCodeTest extends TestCase{
     $margin = 0;
     $color = 'Ff0f0F,#000000';
     $spec = 10;
+    $this->assertFileExists($icon);
     $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, array());
     $this->assertTrue(is_array($str));
     $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
