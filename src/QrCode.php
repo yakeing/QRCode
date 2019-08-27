@@ -40,8 +40,7 @@ class QrCode{
         //image 图像
         $img = new qrcode_image();
         $im = $img->ImgColor($tab, $pixel, $icon, $margin, $color);
-        if(true === $stream) return $im;
-        //if(is_object($stream)) return $im; //new stdClass()
+        if(true === $stream) return $im; //resource(0) of type (gd)
         if(strtoupper($type) == 'PNG'){
             header('Content-type: image/PNG');
             ImagePNG($im);
