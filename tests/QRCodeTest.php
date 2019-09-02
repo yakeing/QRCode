@@ -4,7 +4,7 @@ use qr_code\QrCode;
 use PHPUnit\Framework\TestCase;
 class QRCodeTest extends TestCase{
   public function testQRCode(){
-    $text = 'QrCode';
+    $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $pixel = 32;
     $icon = dirname(__FILE__).'/icon.jpg';
     $distinguish ='L';
@@ -12,11 +12,12 @@ class QRCodeTest extends TestCase{
     $margin = 0;
     $color = 'Ff0f0F,#000000';
     $spec = 10;
+    $OutputPath = '/tmp/QRCodeTest.'.$type;
     $this->assertFileExists($icon);
-    $str = QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, array());
-    $this->assertTrue(is_array($str));
+    QrCode::image($text, $pixel, $icon, $distinguish, $type, $margin, $color, $spec, false, $OutputPath);
+    $this->assertFileExists($OutputPath);
     $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $imag = QrCode::image($text, $pixel, false, 'H', 'jpg', 2, array('235,00,100','68,200,90'), $spec, true);
-    $this->assertTrue(is_resource($imag));
+    $imag = QrCode::image('QRCode', 32, false, 'H', 'jpg', 2, array('235,00,100','68,200,90'), 10, true);
+    $this->assertTrue(is_array($imag));
   }
 }
