@@ -5,12 +5,12 @@ use PHPUnit\Framework\TestCase;
 class QRCodeTest extends TestCase{
   public function testQRCode(){
     $text = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $pixel = 32;
+    $pixel = 350;
     $icon = dirname(__FILE__).'/icon.jpg';
     $distinguish ='L';
     $type = 'png';
     $margin = 0;
-    $color = 'Ff0f0F,#000000';
+    $color = 'FffFFF,#000000';
     $spec = 10;
     $OutputPath = '/tmp/QRCodeTest.'.$type;
     $this->assertFileExists($icon);
