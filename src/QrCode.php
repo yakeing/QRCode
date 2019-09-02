@@ -4,7 +4,7 @@
     *  二维码类
     *
     * @author http://weibo.com/yakeing
-    * @version 3.2
+    * @version 3.2.1
     *
     *  $text  [QR code content] (string) (二维码内容)
     *  $pixel [size of the QR] (ini) (输出图片尺寸)
@@ -22,7 +22,7 @@
  */
 namespace qr_code;
 class QrCode{
-    public static function image($text, $pixel = 200, $icon = false, $distinguish = 'L', $type = 'PNG', $margin = 0, $color = false, $spec=1, $stream = false){
+    public static function image($text, $pixel = 200, $icon = false, $distinguish = 'L', $type = 'PNG', $margin = 0, $color = false, $spec=1, $stream = false, $OutputPath = null){
         //string 文字
         $string = new qrcode_string();
         $string->initial($text, $distinguish, intval($spec));
@@ -36,17 +36,19 @@ class QrCode{
         $exchange = new qrcode_exchange();
         $masked = $exchange->run($string, $width, $frame, $datacode);
         $tab = $exchange->binarize($masked);
-        if(is_array($stream)) return $tab;
+        if(true === $stream) return $tab;
         //image 图像
         $img = new qrcode_image();
         $im = $img->ImgColor($tab, $pixel, $icon, $margin, $color);
-        if(true === $stream) return $im; //resource(0) of type (gd)
+        if(!is_string($OutputPath)){
+            $OutputPath = null;
+        }
         if(strtoupper($type) == 'PNG'){
             header('Content-type: image/PNG');
-            ImagePNG($im);
+            ImagePNG($im, $OutputPath);
         }else{
             header('Content-type: image/JPEG');
-            ImageJPEG($im);//合成输出
+            ImageJPEG($im, $OutputPath);//合成输出
         }
         ImageDestroy($im); //结束图形
         return $im;
