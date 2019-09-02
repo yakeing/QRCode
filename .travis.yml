@@ -28,7 +28,9 @@ deploy:
   api_key:
     secure: ${GITHUB_TOKEN}
   file_glob: true
-  file: /tmp/Core.tar.gz
+  file:
+    - /tmp/Core.tar.gz
+    - /tmp/QRCodeTest.png
   skip_cleanup: true
   on:
     tags: true
