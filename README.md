@@ -1,4 +1,5 @@
 # QRCode
+
 This is a class of php QR Code, This library helps you generate QR codes in a jiffy. 
 
 [中文文档](https://github.com/yakeing/QRCode/blob/master/ZH.README.md)
