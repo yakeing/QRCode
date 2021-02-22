@@ -25,11 +25,11 @@
 
 ### Github 图标
 
-[![Downloads](https://img.shields.io/github/downloads/yakeing/QRCode/total?color=dfb317&logo=github)](../../)
-[![Size](https://img.shields.io/github/size/yakeing/QRCode/src/QrCode.php?color=b36d41&logo=github)](src/QrCode.php)
-[![tag](https://img.shields.io/github/v/tag/yakeing/QRCode?color=28a745&logo=github)](../../releases)
-[![license](https://img.shields.io/github/license/yakeing/QRCode?color=FE7D37&logo=github)](LICENSE)
-[![languages](https://img.shields.io/badge/languages-php-007EC6?logo=github)](../../search?l=php)
+[![Downloads](https://badging.now.sh/github/downloads/yakeing/QRCode?logo=github)](../../)
+[![Size](https://badging.now.sh/github/size/yakeing/QRCode?logo=github)](src)
+[![tag](https://badging.now.sh/github/tag/yakeing/QRCode?logo=github)](../../releases)
+[![license](https://badging.now.sh/github/license/yakeing/QRCode?logo=github)](LICENSE)
+[![languages](https://badging.now.sh/github/language/yakeing/QRCode?logo=github)](../../search?l=php)
 
 ### 安装
 
@@ -62,7 +62,7 @@
 如果觉得代码对你有所帮助就请给点动力我们对代码能有持续更新
 
 
-[![Sponsor](https://img.shields.io/badge/-Sponsor-EA4AAA?logo=google%20fit&logoColor=FFFFFF)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
+[![Sponsor](https://badging.now.sh/static/label/Sponsor/EA4AAA?logo=heart)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
 
 
 作者
