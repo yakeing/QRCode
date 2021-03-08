@@ -14,7 +14,7 @@ This is a class of php QR Code, This library helps you generate QR codes in a ji
 
 ### Github badge
 
-[![Downloads](https://badging.now.sh/github/downloads/yakeing/QRCode?logo=github)](../../)
+[![Downloads](https://badging.now.sh/github/downloads/yakeing/QRCode?icon=github)](../../)
 [![Size](https://badging.now.sh/github/size/yakeing/QRCode?icon=github)](src)
 [![tag](https://badging.now.sh/github/tag/yakeing/QRCode?icon=github)](../../releases)
 [![license](https://badging.now.sh/static/label/license/555/MPL-2.0/fe7d37?icon=github)](LICENSE)
