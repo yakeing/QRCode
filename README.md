@@ -14,11 +14,11 @@ This is a class of php QR Code, This library helps you generate QR codes in a ji
 
 ### Github badge
 
-[![Downloads](https://badging.now.sh/github/downloads/yakeing/QRCode?icon=github)](../../)
-[![Size](https://badging.now.sh/github/size/yakeing/QRCode?icon=github)](src)
-[![tag](https://badging.now.sh/github/tag/yakeing/QRCode?icon=github)](../../releases)
-[![license](https://badging.now.sh/static/label/license/555/MPL-2.0/fe7d37?icon=github)](LICENSE)
-[![languages](https://badging.now.sh/static/label/language/555/PHP/34abef?icon=github)](../../search?l=php)
+[![Downloads](https://badging.tk/github/downloads/yakeing/QRCode?icon=github)](../../)
+[![Size](https://badging.tk/github/size/yakeing/QRCode?icon=github)](src)
+[![tag](https://badging.tk/github/tag/yakeing/QRCode?icon=github)](../../releases)
+[![license](https://badging.tk/static/label/license/555/MPL-2.0/fe7d37?icon=github)](LICENSE)
+[![languages](https://badging.tk/static/label/language/555/PHP/34abef?icon=github)](../../search?l=php)
 
 ### Installation
 
@@ -50,7 +50,7 @@ Of course, You can go to [Packagist](https://packagist.org/packages/yakeing/qrco
 ---
 If you've got value from any of the content which I have created, then I would very much appreciate your support by payment donate.
 
-[![Sponsor](https://badging.now.sh/static/label/Sponsor/EA4AAA?icon=heart)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
+[![Sponsor](https://badging.tk/static/label/Sponsor/EA4AAA?icon=heart)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
 
 Author
 ---
