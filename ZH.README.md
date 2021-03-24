@@ -12,11 +12,11 @@
 
 ### Travis CI
 
-[![Travis-ci](https://api.travis-ci.com/yakeing/QRCode.svg?branch=master)](https://travis-ci.com/yakeing/QRCode)
+[![Travis-ci](https://api.travis-ci.com/yakeing/QRCode.svg?branch=main)](https://travis-ci.com/yakeing/QRCode)
 
 ### codecov 图标
 
-[![codecov](https://codecov.io/gh/yakeing/QRCode/branch/master/graph/badge.svg)](https://codecov.io/gh/yakeing/QRCode)
+[![codecov](https://codecov.io/gh/yakeing/QRCode/branch/main/graph/badge.svg)](https://codecov.io/gh/yakeing/QRCode)
 
 ### Packagist 图标
 
