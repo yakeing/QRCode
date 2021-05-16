@@ -25,11 +25,11 @@
 
 ### Github 图标
 
-[![Downloads](https://badging.tk/github/downloads/yakeing/QRCode?icon=github)](../../)
-[![Size](https://badging.tk/github/size/yakeing/QRCode?icon=github)](src)
-[![tag](https://badging.tk/github/tag/yakeing/QRCode?icon=github)](../../releases)
-[![license](https://badging.tk/static/license/555/MPL-2.0/fe7d37?icon=github)](LICENSE)
-[![languages](https://badging.tk/static/language/555/PHP/34abef?icon=github)](../../search?l=php)
+[![Downloads](https://badging.vercel.app/github/downloads/yakeing/QRCode?icon=github)](../../)
+[![Size](https://badging.vercel.app/github/size/yakeing/QRCode?icon=github)](src)
+[![tag](https://badging.vercel.app/github/tag/yakeing/QRCode?icon=github)](../../releases)
+[![license](https://badging.vercel.app/static/license/555/MPL-2.0/fe7d37?icon=github)](LICENSE)
+[![languages](https://badging.vercel.app/static/language/555/PHP/34abef?icon=github)](../../search?l=php)
 
 ### 安装
 
@@ -62,7 +62,7 @@
 如果觉得代码对你有所帮助就请给点动力我们对代码能有持续更新
 
 
-[![Sponsor](https://badging.tk/static/Sponsor/EA4AAA?icon=heart)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
+[![Sponsor](https://badging.vercel.app/static/Sponsor/EA4AAA?icon=heart)](https://github.com/yakeing/Documentation/blob/master/Sponsor/README.md)
 
 
 作者
